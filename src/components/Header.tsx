@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import profileImg from '@/src/assets/images/emajebs.png';
+import { BadgeCheck } from "lucide-react";
 
 const Header = () => {
   const routes = [
     {label: "Home", path: "/"},
+      { path: '/about',        icon: BadgeCheck,     label: 'Sobre' },
     {label: "Arsenal", path: "/tech"},
     {label: "Projectos", path: "/projects"},
     {label: "Contactos", path: "/contact"},

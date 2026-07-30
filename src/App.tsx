@@ -13,6 +13,7 @@ import BottomNav from './components/BottomNav';
 
 import { projects } from '@/src/data/projects.data';
 import ProjectDetail from '@/src/components/ProjectDetail';
+import AboutPage from './pages/AboutPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,6 +34,7 @@ export default function App() {
         <main className="py-12">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route
               path="/projects/:id"

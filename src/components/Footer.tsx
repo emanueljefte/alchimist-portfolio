@@ -4,7 +4,7 @@ import AlchimistIcon from "@/src/assets/images/alchimist-icon.png"
 const socials = [
   { icon: AtSign, label: "Email", href: "mailto:emanueldinganijoao13@gmail.com" },
   { icon: Github, label: "GitHub", href: "https://github.com/emanueljefte", external: true },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/...", external: true },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/emanuel-jeft%C3%A9-dingani-jo%C3%A3o/", external: true },
 ];
 
 const Footer = () => {

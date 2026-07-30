@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import PageWrapper from '@/components/PageWrapper';
-import heroImg from '@/assets/images/emajefte.png';
+import PageWrapper from '@/src/components/PageWrapper';
+import heroImg from '@/src/assets/images/emajefte.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,12 +106,12 @@ const AboutPage = () => {
 
           {/* foto */}
           <div className="flex items-start justify-center lg:justify-end">
-            <div className="relative w-full max-w-[280px]">
-              <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e8a94d22_1px,transparent_1px)] [background-size:20px_20px]" />
+            <div className="relative w-full max-w-70">
+              <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e8a94d22_1px,transparent_1px)] bg-size-[20px_20px]" />
               <img
                 src={heroImg}
                 alt="Emanuel Jefté — Alchimist"
-                className="w-full rounded-2xl border border-outline-variant/15 object-cover object-top aspect-[3/4] shadow-[0_0_30px_rgba(232,169,77,0.1)]"
+                className="w-full rounded-2xl border border-outline-variant/15 object-cover object-top aspect-3/4 shadow-[0_0_30px_rgba(232,169,77,0.1)]"
               />
             </div>
           </div>
@@ -143,15 +143,15 @@ const AboutPage = () => {
           </span>
           <div className="relative flex flex-col gap-0">
             {/* linha vertical */}
-            <div className="absolute left-[52px] top-2 bottom-2 w-px bg-outline-variant/15" />
+            <div className="absolute left-13 top-2 bottom-2 w-px bg-outline-variant/15" />
 
             {timeline.map((item, i) => (
               <div key={i} className="flex items-start gap-6 pb-8 last:pb-0">
-                <div className="flex-shrink-0 w-[52px] text-right">
+                <div className="shrink-0 w-13 text-right">
                   <span className="font-mono text-[11px] text-primary/70">{item.year}</span>
                 </div>
                 {/* ponto */}
-                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-1 relative z-10" />
+                <div className="shrink-0 w-2 h-2 rounded-full bg-primary mt-1 relative z-10" />
                 <p className="font-label text-sm text-on-surface-variant pt-0 leading-relaxed">
                   {item.label}
                 </p>
@@ -168,7 +168,7 @@ const AboutPage = () => {
           </div>
           <a
             href="/contact"
-            className="flex-shrink-0 px-8 py-3 bg-primary text-on-primary font-headline font-bold text-sm rounded-lg active:scale-95 transition-all hover:shadow-[0_0_24px_rgba(232,169,77,0.25)] whitespace-nowrap"
+            className="shrink-0 px-8 py-3 bg-primary text-on-primary font-headline font-bold text-sm rounded-lg active:scale-95 transition-all hover:shadow-[0_0_24px_rgba(232,169,77,0.25)] whitespace-nowrap"
           >
             Vamos conversar
           </a>

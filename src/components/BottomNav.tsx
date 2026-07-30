@@ -1,9 +1,10 @@
-import { Code, Home, Mail, Terminal } from "lucide-react";
+import { BadgeCheck, Code, Home, Mail, Terminal } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import type { LucideIcon } from 'lucide-react';
 
 const routes: { path: string; icon: LucideIcon; label: string }[] = [
   { path: '/',        icon: Home,     label: 'Home' },
+  { path: '/about',        icon: BadgeCheck,     label: 'Sobre' },
   { path: '/tech',    icon: Terminal, label: 'Arsenal' },
   { path: '/projects',icon: Code,     label: 'Projectos' },
   { path: '/contact', icon: Mail,     label: 'Contactos' },

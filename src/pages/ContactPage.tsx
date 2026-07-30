@@ -99,7 +99,7 @@ const ContactPage = () => {
             <div className="flex flex-col gap-1.5">
               <label className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Mensagem</label>
               <textarea
-                className={`${inputCls} resize-none min-h-[180px]`}
+                className={`${inputCls} resize-none min-h-45`}
                 placeholder="Conta-me o teu projecto..."
                 value={form.message}
                 onChange={set('message')}
@@ -144,11 +144,11 @@ const ContactPage = () => {
             {/* localização / fuso */}
             <div className="p-5 rounded-xl bg-surface border border-outline-variant/10 flex flex-col gap-4">
               <div className="flex items-center gap-3 text-on-surface-variant text-sm">
-                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-primary shrink-0" />
                 Luanda, Angola
               </div>
               <div className="flex items-center gap-3 text-on-surface-variant text-sm">
-                <Clock className="w-4 h-4 text-primary flex-shrink-0" />
+                <Clock className="w-4 h-4 text-primary shrink-0" />
                 WAT — UTC+1 · Remote friendly
               </div>
             </div>
@@ -168,7 +168,7 @@ const ContactPage = () => {
                 </div>
               </a>
               <a
-                href="https://linkedin.com/in/teu-perfil"
+                href="https://www.linkedin.com/in/emanuel-jeft%C3%A9-dingani-jo%C3%A3o/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-4 rounded-xl bg-surface border border-outline-variant/10 hover:border-primary/25 transition-colors group"
@@ -177,7 +177,7 @@ const ContactPage = () => {
                 <div>
                   <div className="font-mono text-[10px] text-on-surface-variant/40 mb-0.5">linkedin</div>
                   <div className="font-label text-sm text-on-surface group-hover:text-primary transition-colors">
-                    linkedin.com/in/teu-perfil
+                    linkedin.com/in/emanuel-jefte-dingani-joão/
                   </div>
                 </div>
               </a>

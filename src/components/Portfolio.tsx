@@ -47,7 +47,7 @@ const Portfolio = () => {
       img: edificaquizImg,
       badge: "Liberado a versão 1.0.4",
       url: "https://...",    // link da app/store
-      repo: "https://github.com/...",
+      repo: "https://github.com/emanueljefte/edifica-quiz",
     },
     {
       id: "meu-kwanza-controlado",
@@ -57,7 +57,7 @@ const Portfolio = () => {
       img: kwanzaImg,
       badge: "Projecto na versão de testes",
       url: "https://...",    // link da app/store
-      repo: "https://github.com/...",
+      repo: "https://github.com/emanueljefte/Kwanza_Controlo",
     },
     {
       id: "mlo",
