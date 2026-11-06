@@ -3,7 +3,7 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { ChevronDown, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import heroImg from '@/src/assets/images/emajefte.png';
+import heroImg from '@/src/assets/images/emajefte.webp';
 
 gsap.registerPlugin(TextPlugin);
 

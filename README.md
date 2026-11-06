@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Alchimist — Portfólio
 
-# Run and deploy your AI Studio app
+Portfólio de Emanuel Jefté (Alchimist). React 19 · TypeScript · Vite · TailwindCSS 4 · GSAP.
 
-This contains everything you need to run your app locally.
+## Correr
 
-View your app in AI Studio: https://ai.studio/apps/b582423f-492d-4f57-8cb4-0255790ed710
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # produção → dist/
+npm run lint     # tsc --noEmit
+```
 
-## Run Locally
+## Formulário de contacto
 
-**Prerequisites:**  Node.js
+Cria um formulário em [Formspree](https://formspree.io) e define o ID em `.env.local`:
 
+```
+VITE_FORMSPREE_ID=o_teu_id
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Sem ID, o formulário abre o cliente de email (`mailto:`).
+
+## Conteúdo
+
+- Projectos: `src/data/projects.data.ts` (fonte única — Home, lista e detalhe).
+- Arsenal: `src/pages/TechPage.tsx`.
+- Imagens em `.webp` (`src/assets/images`).

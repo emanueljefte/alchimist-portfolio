@@ -27,7 +27,6 @@ const Expertise = () => {
     }, sectionRef);
     return () => {
       ctx.revert();
-      ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 
@@ -46,14 +45,6 @@ const Expertise = () => {
           <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Expertise</span>
           <h2 className="font-headline text-2xl font-bold mt-2">Arsenal Técnico</h2>
         </div>
-          <div className="expertise-card col-span-2 p-6 ...">
-            <div className="flex items-start justify-between">
-              <Smartphone className="w-8 h-8 text-primary" />
-              <span className="text-[12px] font-label tracking-widest text-primary uppercase">principal</span>
-            </div>
-            <h3 className="font-headline font-bold text-on-surface text-md">Mobile Development</h3>
-            <p className="font-label text-[16px] text-on-surface-variant mt-1">React Native, TypeScript, TailwindCSS, Drizzle, Supabase</p>
-          </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 
           {skills.map((skill, i) => (

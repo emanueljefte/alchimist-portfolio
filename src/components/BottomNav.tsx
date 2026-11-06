@@ -22,7 +22,8 @@ const BottomNav = () => {
       <NavLink
         key={route.label}
         aria-label={route.label}
-        to={route.path} 
+        to={route.path}
+        end={route.path === '/'}
         className={navClass}
       >
         <route.icon className="w-6 h-6" />

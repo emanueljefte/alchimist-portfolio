@@ -37,6 +37,7 @@ export interface Project {
   result: string;
   liveUrl?: string;
   repoUrl?: string;
+  featured?: boolean; // aparece na Home
 }
 
 interface ProjectDetailProps {
@@ -121,8 +122,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
     }, pageRef);
 
     return () => {
-      ctx.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
     };
   }, [id, project]);
 
@@ -189,7 +189,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
       </section>
 
       {/* imagem hero */}
-      <div className="max-w-4xl mx-auto px-6 mb-16">
+      {project.heroImg && <div className="max-w-4xl mx-auto px-6 mb-16">
         <div className="relative rounded-2xl overflow-hidden border border-outline-variant/15 aspect-video bg-surface shadow-[0_0_40px_rgba(242,202,80,0.06)]">
           <img
             src={project.heroImg}
@@ -201,20 +201,20 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
             ⚗ alchimist
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* ── PROBLEMA ─────────────────────────────────────────────────────── */}
-      <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+      {project.problem && <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
         <span className="font-mono text-[11px] text-primary uppercase tracking-widest block mb-4">
           o problema
         </span>
         <p className="text-on-surface-variant text-base leading-[1.85] max-w-2xl">
           {project.problem}
         </p>
-      </section>
+      </section>}
 
       {/* ── SOLUÇÃO ──────────────────────────────────────────────────────── */}
-      <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+      {project.solution && <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
         <span className="font-mono text-[11px] text-primary uppercase tracking-widest block mb-4">
           a solução
         </span>
@@ -227,10 +227,10 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
             code={project.codeSnippet.code}
           />
         )}
-      </section>
+      </section>}
 
       {/* ── DESTAQUES TÉCNICOS ───────────────────────────────────────────── */}
-      <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+      {project.highlights.length > 0 && <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
         <span className="font-mono text-[11px] text-primary uppercase tracking-widest block mb-6">
           destaques técnicos
         </span>
@@ -250,7 +250,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
             </div>
           ))}
         </div>
-      </section>
+      </section>}
 
       {/* ── CAPTURAS DE ECRÃ ─────────────────────────────────────────────── */}
       {project.screenshots.length > 0 && (
@@ -269,6 +269,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
                 <img
                   src={s.src}
                   alt={s.label}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -278,7 +279,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
       )}
 
       {/* ── RESULTADO ────────────────────────────────────────────────────── */}
-      <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+      {(project.metrics.length > 0 || project.result) && <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
         <span className="font-mono text-[11px] text-primary uppercase tracking-widest block mb-6">
           resultado
         </span>
@@ -297,10 +298,18 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
         <p className="text-on-surface-variant text-sm leading-[1.85] max-w-2xl">
           {project.result}
         </p>
-      </section>
+      </section>}
+
+      {!project.problem && !project.solution && (
+        <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+          <p className="font-mono text-[12px] text-on-surface-variant/50">
+            ⚗ estudo de caso em preparação — volta em breve.
+          </p>
+        </section>
+      )}
 
       {/* ── LINKS ────────────────────────────────────────────────────────── */}
-      <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+      {(project.liveUrl || project.repoUrl) && <section ref={addSection} className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">
         <span className="font-mono text-[11px] text-primary uppercase tracking-widest block mb-6">
           ver projecto
         </span>
@@ -328,7 +337,7 @@ const ProjectDetail = ({ projects }: ProjectDetailProps) => {
             </a>
           )}
         </div>
-      </section>
+      </section>}
 
       {/* ── NAVEGAÇÃO ────────────────────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-6 py-12 border-t border-outline-variant/10">

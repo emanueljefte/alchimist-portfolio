@@ -7,7 +7,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const ContactPage = () => {
   const pageRef   = useRef<HTMLDivElement>(null);
-  const leftRef   = useRef<HTMLDivElement>(null);
+  const leftRef   = useRef<HTMLFormElement>(null);
   const rightRef  = useRef<HTMLDivElement>(null);
 
   const [form, setForm]     = useState({ name: '', email: '', subject: '', message: '' });
@@ -27,16 +27,26 @@ const ContactPage = () => {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm(prev => ({ ...prev, [field]: e.target.value }));
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
+
+    const formId = import.meta.env.VITE_FORMSPREE_ID;
+    if (!formId) {
+      // sem endpoint configurado → abre o cliente de email
+      const body = `${form.message}\n\n— ${form.name} (${form.email})`;
+      window.location.href = `mailto:emanueldinganijoao13@gmail.com?subject=${encodeURIComponent(form.subject || 'Contacto via portfólio')}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
     setStatus('sending');
-    // substitui pelo teu endpoint (Resend, EmailJS, Formspree, etc.)
     try {
-      await fetch('https://formspree.io/f/SEU_ID', {
+      const res = await fetch(`https://formspree.io/f/${formId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error(String(res.status));
       setStatus('sent');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch {
@@ -63,51 +73,51 @@ const ContactPage = () => {
         <div className="grid lg:grid-cols-[1fr_420px] gap-12">
 
           {/* ── formulário ── */}
-          <div ref={leftRef} style={{ opacity: 0 }} className="flex flex-col gap-5">
+          <form ref={leftRef} onSubmit={handleSubmit} style={{ opacity: 0 }} className="flex flex-col gap-5">
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Nome</label>
+                <label htmlFor="c-name" className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Nome</label>
                 <input
                   className={inputCls}
                   placeholder="Emanuel Jefté"
-                  value={form.name}
+                  id="c-name" name="name" required value={form.name}
                   onChange={set('name')}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Email</label>
+                <label htmlFor="c-email" className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Email</label>
                 <input
                   type="email"
                   className={inputCls}
                   placeholder="exemplo@email.com"
-                  value={form.email}
+                  id="c-email" name="email" required value={form.email}
                   onChange={set('email')}
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Assunto</label>
+              <label htmlFor="c-subject" className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Assunto</label>
               <input
                 className={inputCls}
                 placeholder="Projecto, consultoria, parceria..."
-                value={form.subject}
+                id="c-subject" name="subject" value={form.subject}
                 onChange={set('subject')}
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Mensagem</label>
+              <label htmlFor="c-message" className="font-mono text-[11px] text-on-surface-variant/50 uppercase tracking-widest">Mensagem</label>
               <textarea
                 className={`${inputCls} resize-none min-h-45`}
                 placeholder="Conta-me o teu projecto..."
-                value={form.message}
+                id="c-message" name="message" required value={form.message}
                 onChange={set('message')}
               />
             </div>
 
             <button
-              onClick={handleSubmit}
+              type="submit"
               disabled={status === 'sending' || status === 'sent'}
               className="flex items-center justify-center gap-2 bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg text-sm uppercase tracking-wider active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_24px_rgba(232,169,77,0.25)]"
             >
@@ -122,10 +132,10 @@ const ContactPage = () => {
 
             {status === 'error' && (
               <p className="font-mono text-[11px] text-red-400 text-center">
-                Erro ao enviar. Tenta pelo email directo.
+                Erro ao enviar. Tenta pelo email directo: emanueldinganijoao13@gmail.com
               </p>
             )}
-          </div>
+          </form>
 
           {/* ── info lateral ── */}
           <div ref={rightRef} style={{ opacity: 0 }} className="flex flex-col gap-6">

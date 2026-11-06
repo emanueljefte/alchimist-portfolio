@@ -1,8 +1,11 @@
 import type { Project } from '@/src/components/ProjectDetail';
-import edificaquizImg from '@/src/assets/images/edificaquiz.png';
+import edificaquizImg from '@/src/assets/images/edificaquiz.webp';
 
-// adiciona os outros imports de imagem aqui
-// import kwanzaImg from '@/assets/images/meu_kwanza_controlado.png';
+import kwanzaImg from '@/src/assets/images/meu_kwanza_controlado.webp';
+
+// capturas de ecrã do EdificaQuiz (ordem = ordem do carrossel)
+const eq = import.meta.glob('@/src/assets/images/EdificaQuiz/*.webp', { eager: true, import: 'default' }) as Record<string, string>;
+const shot = (name: string) => eq[`/src/assets/images/EdificaQuiz/${name}.webp`];
 
 export const projects: Project[] = [
   {
@@ -16,7 +19,17 @@ export const projects: Project[] = [
     tags: ['React Native', 'TypeScript', 'Drizzle', 'SQLite', 'Expo'],
     heroImg: edificaquizImg,
     screenshots: [
-      // { src: edificaquizScreen1, label: 'Ecrã inicial' },
+      { src: shot('eq-Initial'),     label: 'Ecrã inicial' },
+      { src: shot('eq-dashboard'),   label: 'Painel' },
+      { src: shot('eq-multichoice'), label: 'Escolha múltipla' },
+      { src: shot('eq-truefalse'),   label: 'Verdadeiro ou falso' },
+      { src: shot('eq-orderwords'),  label: 'Ordenar palavras' },
+      { src: shot('eq-answerright'), label: 'Resposta certa' },
+      { src: shot('eq-answerwrong'), label: 'Resposta errada' },
+      { src: shot('eq-score'),       label: 'Pontuação' },
+      { src: shot('eq-progress'),    label: 'Progresso' },
+      { src: shot('eq-profile'),     label: 'Perfil' },
+      { src: shot('eq-settings'),    label: 'Definições' },
     ],
     problem: 'Os alunos da Escola da Edificação não tinham forma de estudar de modo interactivo fora das aulas. O conteúdo existia apenas em papel — sem acesso offline, sem feedback imediato, sem acompanhamento do progresso.',
     solution: 'Uma app mobile com quizzes por tema, progresso persistido localmente e funcionamento 100% offline. Escolhi SQLite com Drizzle para eliminar a dependência de rede — o aluno estuda mesmo sem dados móveis.',
@@ -64,6 +77,7 @@ await db.insert(progress).values({
     ],
     result: 'Aplicação em uso activo na Escola da Edificação. Quatro versões lançadas desde o início do projecto, com feedback real dos alunos a guiar cada iteração.',
     repoUrl: 'https://github.com/emanueljefte/edificaquiz',
+    featured: true,
   },
 
   {
@@ -75,13 +89,15 @@ await db.insert(progress).values({
     badge: 'Versão de testes',
     badgeType: 'beta',
     tags: ['React Native', 'TypeScript', 'Drizzle', 'SQLite', 'Express', 'PostgreSQL'],
-    heroImg: '', // kwanzaImg
+    heroImg: kwanzaImg,
     screenshots: [],
     problem: '',
     solution: '',
     highlights: [],
     metrics: [],
     result: '',
+    repoUrl: 'https://github.com/emanueljefte/Kwanza_Controlo',
+    featured: true,
   },
 
   {
@@ -98,6 +114,113 @@ await db.insert(progress).values({
     problem: '',
     solution: '',
     highlights: [],
+    metrics: [],
+    result: '',
+  },
+
+  {
+    id: 'smartzunga',
+    index: 4,
+    title: 'SmartZunga',
+    tagline: 'Gestão financeira offline-first para as zungueiras de Luanda — vendas, estoque, fiado e poupança no telemóvel.',
+    desc: 'App de gestão financeira para vendedoras informais, e projecto de dissertação.',
+    badge: 'Em construção',
+    badgeType: 'wip',
+    tags: ['React Native', 'Expo', 'TypeScript', 'Drizzle', 'SQLite', 'Supabase'],
+    heroImg: '',
+    screenshots: [],
+    problem: 'As zungueiras gerem o negócio de cabeça ou em cadernos: sem saber o lucro real, com o fiado espalhado e sem rede estável para depender de serviços na cloud.',
+    solution: 'Uma app offline-first em que tudo vive em SQLite no telemóvel e a sincronização com o Supabase é opcional. O desenho seguiu DDD e Event Storming, que separaram os contextos Catálogo/Vendas, Caderneta/Fiado, Kixikila, Poupança e Sync.',
+    highlights: [
+      { icon: '🧾', title: 'Faturação', desc: 'Facturas com comandos de voz e exportação em PDF.' },
+      { icon: '📦', title: 'Estoque', desc: 'Registo append-only: cada movimento fica no histórico, nada é sobrescrito.' },
+      { icon: '📒', title: 'Caderneta & Kixikila', desc: 'Controlo de dívidas de clientes e grupos de poupança rotativa com notificações agendadas.' },
+      { icon: '💰', title: 'Poupança automática', desc: 'Dedução automática a partir da margem de lucro de cada venda.' },
+    ],
+    metrics: [],
+    result: '',
+  },
+
+  {
+    id: 'inrumo',
+    index: 5,
+    title: 'INRumo',
+    tagline: 'Plataforma de orientação vocacional do INSTIC, com um assistente de IA para ajudar cada aluno a escolher o seu caminho.',
+    desc: 'Orientação vocacional para o INSTIC — mobile, web e chat com IA. Trabalho de fim de curso.',
+    badge: 'Em construção',
+    badgeType: 'wip',
+    tags: ['React Native', 'Expo', 'React', 'Vite', 'Drizzle', 'Supabase'],
+    heroImg: '',
+    screenshots: [],
+    problem: '',
+    solution: 'Uma plataforma com app mobile (React Native/Expo) e superfície web (Vite + React), com uma camada de chat com IA servida por Supabase Edge Functions.',
+    highlights: [
+      { icon: '📱', title: 'Mobile + Web', desc: 'A mesma plataforma em app Expo e em web com Vite + React.' },
+      { icon: '🤖', title: 'Chat com IA', desc: 'Assistente conversacional via Supabase Edge Functions, sem expor chaves no cliente.' },
+    ],
+    metrics: [],
+    result: '',
+    featured: true,
+  },
+
+  {
+    id: 'zaila',
+    index: 6,
+    title: 'Zaila',
+    tagline: 'Plataforma fintech B2B de financiamento de facturas para empresas em Angola.',
+    desc: 'Financiamento de facturas B2B. Projecto de fim de curso.',
+    badge: 'Em construção',
+    badgeType: 'wip',
+    tags: ['Fintech', 'B2B', 'DDD'],
+    heroImg: '',
+    screenshots: [],
+    problem: '',
+    solution: 'Modelado com DDD e Event Storming.',
+    highlights: [],
+    metrics: [],
+    result: '',
+  },
+
+  {
+    id: 'biblioteca',
+    index: 7,
+    title: 'Sistema de Biblioteca',
+    tagline: 'Intranet de gestão de biblioteca com perfis de administrador, bibliotecário e utilizador — a funcionar 100% offline.',
+    desc: 'Reestruturação de um sistema de biblioteca (de um único index.html para uma intranet).',
+    badge: 'Em construção',
+    badgeType: 'wip',
+    tags: ['React', 'Vite', 'TailwindCSS', 'Hono', 'Drizzle', 'SQLite'],
+    heroImg: '',
+    screenshots: [],
+    problem: 'O sistema original era um único index.html com localStorage: difícil de ler, de manter e sem distinção entre quem usa.',
+    solution: 'Monorepo pnpm com servidor Hono + Drizzle + SQLite e front-end React/Vite/Tailwind, pensado para correr offline num único PC.',
+    highlights: [
+      { icon: '👥', title: 'Perfis', desc: 'Administrador, bibliotecário e utilizador (estudante, professor, funcionário, visitante).' },
+      { icon: '🚪', title: 'Frequência', desc: 'Entrada com hora e saída, em massa, com o objectivo da visita.' },
+      { icon: '📤', title: 'Importar / exportar', desc: 'Modelos de relatório de exportação e de importação.' },
+    ],
+    metrics: [],
+    result: '',
+  },
+
+  {
+    id: 'escuteiros-296',
+    index: 8,
+    title: 'Cadastro Escuteiros 296',
+    tagline: 'Cadastramento digital em autoatendimento para o Agrupamento 296 — Sábios do Oriente, com foto, assinatura e exportação para Excel.',
+    desc: 'PWA offline de inscrição de escuteiros com exportação para Excel.',
+    badge: 'Proposta enviada',
+    badgeType: 'wip',
+    tags: ['PWA', 'Offline-first', 'Supabase', 'Excel'],
+    heroImg: '',
+    screenshots: [],
+    problem: 'O pedido era uma base de dados em Excel, preenchida ficha a ficha — o que obrigaria a atender cada escuteiro individualmente.',
+    solution: 'Em vez disso, cada escuteiro preenche o formulário digital, com foto e assinatura (canvas ou em papel depois). A app funciona offline e sincroniza com o Supabase quando volta a rede.',
+    highlights: [
+      { icon: '✍️', title: 'Autoatendimento', desc: 'Foto e assinatura no próprio formulário, sem atendimento 1 a 1.' },
+      { icon: '📶', title: 'Offline-first', desc: 'PWA local-first que sincroniza quando há rede.' },
+      { icon: '📊', title: 'Excel com dashboard', desc: 'O botão Exportar Excel gera o ficheiro já com dashboard e ficha individual.' },
+    ],
     metrics: [],
     result: '',
   },

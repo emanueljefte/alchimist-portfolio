@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PageWrapper from '@/src/components/PageWrapper';
-import heroImg from '@/src/assets/images/emajefte.png';
+import heroImg from '@/src/assets/images/emajefte.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,8 +51,7 @@ const AboutPage = () => {
     }, pageRef);
 
     return () => {
-      ctx.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
     };
   }, []);
 
@@ -166,12 +166,12 @@ const AboutPage = () => {
             <h3 className="font-headline font-bold text-on-surface text-lg mb-1">Tens um projecto em mente?</h3>
             <p className="font-label text-sm text-on-surface-variant">Estou disponível para freelance e consultoria.</p>
           </div>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="shrink-0 px-8 py-3 bg-primary text-on-primary font-headline font-bold text-sm rounded-lg active:scale-95 transition-all hover:shadow-[0_0_24px_rgba(232,169,77,0.25)] whitespace-nowrap"
           >
             Vamos conversar
-          </a>
+          </Link>
         </div>
 
       </div>

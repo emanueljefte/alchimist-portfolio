@@ -35,7 +35,7 @@ const Footer = () => {
 
         </div>
         <p className="text-on-surface-variant text-xs font-label">
-          © 2026 Emanuel Jefté. Todos os direitos reservados.
+          © {new Date().getFullYear()} Emanuel Jefté. Todos os direitos reservados.
         </p>
         <p className="font-mono text-[10px] text-on-surface-variant/40 tracking-widest text-center mb-2">
           construído com React · TypeScript · GSAP · TailwindCSS

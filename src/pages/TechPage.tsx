@@ -136,8 +136,7 @@ const TechPage = () => {
     }, pageRef);
 
     return () => {
-      ctx.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
     };
   }, []);
 

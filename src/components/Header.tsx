@@ -1,11 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import profileImg from '@/src/assets/images/emajebs.png';
-import { BadgeCheck } from "lucide-react";
+import profileImg from '@/src/assets/images/emajebs.webp';
 
 const Header = () => {
   const routes = [
     {label: "Home", path: "/"},
-      { path: '/about',        icon: BadgeCheck,     label: 'Sobre' },
+    {label: "Sobre", path: "/about"},
     {label: "Arsenal", path: "/tech"},
     {label: "Projectos", path: "/projects"},
     {label: "Contactos", path: "/contact"},
@@ -24,10 +23,11 @@ const Header = () => {
         <span className="text-lg font-label font-bold text-primary tracking-[-0.02em]">EMANUEL JEFTÉ</span>
       </Link>
       <nav className="hidden md:flex items-center gap-1">
-        {routes.map((route, index) => (
+        {routes.map((route) => (
       <NavLink key={route.path}
-        to={route.path} 
-        className={({ isActive }) => `flex items-center justify-center rounded-full mx-10 h-10 transition-all px-4 py-2 active:scale-90 ${isActive ? 'bg-primary text-on-primary' : 'text-on-surface hover:bg-surface'}`}
+        to={route.path}
+        end={route.path === "/"}
+        className={({ isActive }) => `flex items-center justify-center rounded-full mx-1 lg:mx-3 h-10 transition-all px-4 py-2 active:scale-90 ${isActive ? 'bg-primary text-on-primary' : 'text-on-surface hover:bg-surface'}`}
       >
         {route.label}
       </NavLink>
